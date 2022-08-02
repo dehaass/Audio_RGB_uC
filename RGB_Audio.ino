@@ -1,7 +1,7 @@
  
-int analogPin = 0; // MSGEQ7 OUT
-int strobePin = 2; // MSGEQ7 STROBE
-int resetPin = 3; // MSGEQ7 RESET
+int analogPin = A0; // MSGEQ7 OUT
+int strobePin = A1; // MSGEQ7 STROBE
+int resetPin = A2; // MSGEQ7 RESET
 int spectrumValue[7];
  
 // MSGEQ7 OUT pin produces values around 50-80
@@ -11,14 +11,14 @@ int filterValue = 80;
  
 // LED pins connected to the PWM pins on the Arduino
  
-int ledPinR = 13;
-int ledPinG = 12;
-int ledPinB = 11;
-int ledPinW = 10;
+int ledPinR = 3;
+int ledPinG = 6;
+int ledPinB = 5;
+int ledPinW = 9;
  
 void setup()
 {
-  //Serial.begin(9600);
+  Serial.begin(115200);
   // Read from MSGEQ7 OUT
   pinMode(analogPin, INPUT);
   // Write to MSGEQ7 STROBE and RESET
@@ -55,8 +55,8 @@ void loop()
     spectrumValue[i] = map(spectrumValue[i], filterValue, 1023, 0, 255);
  
     // Remove serial stuff after debugging
-    //Serial.print(spectrumValue[i]);
-    //Serial.print(" ");
+    Serial.print(spectrumValue[i]);
+    Serial.print(" ");
     digitalWrite(strobePin, HIGH);
    }
  
